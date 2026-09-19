@@ -28,7 +28,7 @@ Production output is `dist/`. Keep the source documents outside the repository.
 
 This is a review prototype, not a public launch. No backend, inquiry collection, graduate registry, analytics, account system, donation processing, or public partner agreements are implemented or implied. Contact details are intentionally unconfigured.
 
-`noindex` / `nofollow` and robots directives discourage indexing; they are not authentication. Use an access-controlled host before sharing a deployed review. Nothing in this repository deploys automatically.
+`noindex` / `nofollow` and robots directives discourage indexing; they are not authentication. Use an access-controlled host before sharing a deployed review. Nothing in this repository deploys automatically. The private Sites review deployment is configured in `.openai/hosting.json`; see `docs/DEPLOYMENT.md`.
 
 ## Content and configuration
 
