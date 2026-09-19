@@ -53,7 +53,7 @@ export default function Home() {
           </div>
           <figure className="hero-figure">
             <img
-              src="/images/study-desk.jpg"
+              src={`${import.meta.env.BASE_URL}images/study-desk.jpg`}
               alt="Books, a notebook, and a laptop on a sunlit study desk"
               width="1536"
               height="1024"

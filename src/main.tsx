@@ -9,7 +9,7 @@ const ContentPages = lazy(() => import("./pages/ContentPages"));
 const Stories = lazy(() => import("./pages/Stories"));
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Metadata />
       <Suspense
         fallback={

@@ -37,7 +37,8 @@ const pages: Record<string, [string, string]> = {
   ],
 };
 export default function Metadata() {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const pathname = location.pathname.replace(/\/+$/, "") || "/";
   useEffect(() => {
     const story = stories.find((s) => pathname === `/stories/${s.slug}`);
     const [title, description] = story
@@ -59,10 +60,15 @@ export default function Metadata() {
       siteConfig.reviewMode ? "noindex, nofollow" : "index, follow",
     );
     document.querySelector('link[rel="canonical"]')?.remove();
-    if (siteConfig.canonicalOrigin) {
+    const canonicalOrigin =
+      import.meta.env.VITE_CANONICAL_ORIGIN || siteConfig.canonicalOrigin;
+    if (canonicalOrigin) {
       const link = document.createElement("link");
       link.rel = "canonical";
-      link.href = new URL(pathname, siteConfig.canonicalOrigin).href;
+      link.href = new URL(
+        pathname.replace(/^\//, ""),
+        canonicalOrigin.endsWith("/") ? canonicalOrigin : `${canonicalOrigin}/`,
+      ).href;
       document.head.append(link);
     }
   }, [pathname]);

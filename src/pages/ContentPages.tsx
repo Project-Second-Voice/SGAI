@@ -502,7 +502,7 @@ function Privacy() {
 }
 export default function ContentPages() {
   const { pathname } = useLocation();
-  switch (pathname) {
+  switch (pathname.replace(/\/+$/, "") || "/") {
     case "/challenge":
       return <Challenge />;
     case "/our-work":

@@ -17,7 +17,7 @@ export const en = {
     backStories: "All graduate stories",
     privacy:
       "These stories are shared anonymously. Names and other identifying information are withheld to protect graduate privacy.",
-    review: "SGAI • Private review prototype",
+    review: "SGAI • Review prototype",
     proposed: "Proposed program",
     contactUnavailable:
       "Public contact details will be available after SGAI review. Inquiries are not being collected through this prototype.",

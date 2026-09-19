@@ -79,7 +79,12 @@ export default function Layout() {
             aria-label="SGAI home"
             onClick={() => setOpen(false)}
           >
-            <img src="/favicon.svg" alt="" width="40" height="40" />
+            <img
+              src={`${import.meta.env.BASE_URL}favicon.svg`}
+              alt=""
+              width="40"
+              height="40"
+            />
             <span>
               {editorial.layout_sgai}
               <small>

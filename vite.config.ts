@@ -5,7 +5,15 @@ import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { siteConfig } from "./src/config";
 import stories from "./src/data/stories.json";
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  base: mode === "github-pages" ? "/SGAI/" : "/",
+  define: {
+    "import.meta.env.VITE_CANONICAL_ORIGIN": JSON.stringify(
+      mode === "github-pages"
+        ? "https://project-second-voice.github.io/SGAI/"
+        : siteConfig.canonicalOrigin,
+    ),
+  },
   plugins: [
     react(),
     tailwindcss(),
@@ -19,11 +27,14 @@ export default defineConfig({
       },
       writeBundle(options) {
         const out = options.dir || "dist";
-        const origin = siteConfig.canonicalOrigin;
+        const origin =
+          mode === "github-pages"
+            ? "https://project-second-voice.github.io/SGAI/"
+            : siteConfig.canonicalOrigin;
         const sitemap = !siteConfig.reviewMode && origin;
         writeFileSync(
           resolve(out, "robots.txt"),
-          `User-agent: *\n${siteConfig.reviewMode ? "Disallow: /" : "Allow: /"}\n${sitemap ? `Sitemap: ${new URL("/sitemap.xml", origin).href}\n` : ""}`,
+          `User-agent: *\n${siteConfig.reviewMode ? "Disallow: /" : "Allow: /"}\n${sitemap ? `Sitemap: ${new URL("sitemap.xml", origin).href}\n` : ""}`,
         );
         writeFileSync(
           resolve(out, "_headers"),
@@ -48,10 +59,10 @@ export default defineConfig({
               .replaceAll(">", "&gt;");
           writeFileSync(
             resolve(out, "sitemap.xml"),
-            `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map((path) => `<url><loc>${escape(new URL(path, origin).href)}</loc></url>`).join("")}</urlset>`,
+            `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map((path) => `<url><loc>${escape(new URL(path.replace(/^\//, ""), origin).href)}</loc></url>`).join("")}</urlset>`,
           );
         }
       },
     },
   ],
-});
+}));
