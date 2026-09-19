@@ -4,7 +4,7 @@ export const siteConfig = {
   shortName: "SGAI",
   reviewMode: true,
   // SGAI approval required before filling any of the following placeholders.
-  canonicalOrigin: "https://sgai.fond-bud-1625.chatgpt.site" as string | null,
+  canonicalOrigin: "https://sgai.jjw92127.chatgpt.site" as string | null,
   publicEmail: null as string | null,
   contactEndpoint: null as string | null,
   officialLogo: null as string | null,

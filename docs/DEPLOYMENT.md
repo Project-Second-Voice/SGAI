@@ -1,6 +1,6 @@
 # Private SGAI review deployment
 
-Review URL: https://sgai.fond-bud-1625.chatgpt.site
+Review URL: https://sgai.jjw92127.chatgpt.site
 
 The hosting project is dedicated to SGAI. Source of record remains https://github.com/Project-Second-Voice/SGAI on `main`. The hosting service receives a deployment mirror of the same source commit; GitHub `origin` is unchanged.
 
