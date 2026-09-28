@@ -13,5 +13,5 @@ export const siteConfig = {
   approvedPartners: [] as { name: string; url: string; logo: string }[],
   mediaLinks: [] as { title: string; url: string }[],
   locale: "en" as "en" | "ar",
-  enabledLocales: ["en"],
+  enabledLocales: ["en", "ar"],
 };

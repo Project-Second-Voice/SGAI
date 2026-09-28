@@ -47,11 +47,13 @@ export default defineConfig(({ mode }) => ({
             "/our-work",
             "/stories",
             "/about",
+            "/media",
             "/partner-with-us",
             "/contact",
             "/privacy",
             ...stories.map((s) => `/stories/${s.slug}`),
           ];
+          paths.push("/ar", ...paths.filter((path) => path !== "/").map((path) => `/ar${path}`));
           const escape = (s: string) =>
             s
               .replaceAll("&", "&amp;")

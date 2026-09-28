@@ -1,26 +1,19 @@
-import { editorial } from "../locales";
 import { Link, useLocation } from "react-router-dom";
 import {
   Arrow,
   ButtonLink,
   PageIntro,
   SectionHeading,
-  Stats,
+  Stats, InitiativeFeature, StrategyPathway,
   PartnerCTA,
   ProgramIcon,
 } from "../components/Shared";
-import {
-  accountability,
-  barriers,
-  capabilities,
-  programs,
-  partnershipCategories,
-  inquiryCategories,
-  pathway,
-} from "../data/institution";
-import { locale } from "../locales";
+import { getInstitutionData } from "../data/institution";
+import { formatIndex, stripLanguage, useI18n } from "../locales";
 import { siteConfig } from "../config";
 function Challenge() {
+  const { language, editorial } = useI18n();
+  const { barriers, pathway } = getInstitutionData(language);
   return (
     <>
       <PageIntro
@@ -86,8 +79,7 @@ function Challenge() {
           {barriers.map((b, i) => (
             <article key={b.title}>
               <span className="index">
-                {editorial.contentpages_0}
-                {i + 1}
+                {formatIndex(i, language)}
               </span>
               <h3>{b.title}</h3>
               <p>{b.text}</p>
@@ -130,6 +122,8 @@ function Challenge() {
   );
 }
 function Work() {
+  const { language, editorial } = useI18n();
+  const { programs } = getInstitutionData(language);
   return (
     <>
       <PageIntro
@@ -150,8 +144,7 @@ function Work() {
           {programs.map((p, i) => (
             <a href={`#${p.id}`} key={p.id}>
               <span>
-                {editorial.contentpages_0}
-                {i + 1}
+                {formatIndex(i, language)}
               </span>
               {p.title}
               <Arrow />
@@ -170,8 +163,7 @@ function Work() {
               <div className="program-number">
                 <ProgramIcon index={i} />
                 <span>
-                  {editorial.contentpages_component_0}
-                  {i + 1}
+                  {language === "ar" ? "البرنامج " : "Component "}{formatIndex(i, language)}
                 </span>
               </div>
               <h2>{p.title}</h2>
@@ -210,6 +202,8 @@ function Work() {
   );
 }
 function About() {
+  const { language, editorial } = useI18n();
+  const { accountability, capabilities, currentWork } = getInstitutionData(language);
   return (
     <>
       <PageIntro
@@ -251,6 +245,21 @@ function About() {
       <Stats />
       <section className="section container">
         <SectionHeading
+          eyebrow={language === "ar" ? "العمل الحالي" : "Current work"}
+          title={language === "ar" ? "نحو مسارات عملية ومستدامة." : "Building practical, sustainable pathways."}
+        />
+        <div className="current-grid">
+          {currentWork.map((item) => (
+            <article key={item.title}>
+              <span className="status-badge">{item.status}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="section container">
+        <SectionHeading
           eyebrow={editorial.contentpages_an_institutional_approach}
           title={editorial.contentpages_the_capacity_to_work_together}
         >
@@ -262,8 +271,7 @@ function About() {
           {capabilities.map((c, i) => (
             <article key={c.title}>
               <span className="index">
-                {editorial.contentpages_0}
-                {i + 1}
+                {formatIndex(i, language)}
               </span>
               <h3>{c.title}</h3>
               <p>{c.description}</p>
@@ -309,12 +317,24 @@ function About() {
             editorial.contentpages_sgai_remains_an_ssas_led_initiative_this_acknowledgement_describe
           }
         </p>
+        <div className="partner-role">
+          <span>{language === "ar" ? "قيادة الشراكات" : "Partnership leadership"}</span>
+          <strong>Jonathan Wang</strong>
+          <p>{language === "ar" ? "مدير الشراكات الدولية والاستراتيجية الرقمية" : "Director of International Partnerships & Digital Strategy"}</p>
+        </div>
       </section>
+      <section className="vision-section section"><div className="container">
+        <SectionHeading eyebrow={language === "ar" ? "الرؤية بعيدة المدى" : "Long-term vision"} title={language === "ar" ? "مسار محتمل نحو إطار تعليمي رسمي مناسب." : "A potential pathway toward an appropriate official educational framework."} />
+        <StrategyPathway />
+        <p className="source-note">{language === "ar" ? "هذه رؤية مستقبلية، ولا تعني ملكية حكومية حالية أو اعتماداً أو دمجاً مضموناً." : "This is a future objective. It does not imply current government ownership, endorsement, or guaranteed adoption."}</p>
+      </div></section>
       <PartnerCTA />
     </>
   );
 }
 function Partners() {
+  const { language, editorial, path } = useI18n();
+  const { partnershipCategories } = getInstitutionData(language);
   return (
     <>
       <PageIntro
@@ -336,8 +356,7 @@ function Partners() {
             <article key={p.title}>
               <div className="partnership-heading">
                 <span className="index">
-                  {editorial.contentpages_0}
-                  {i + 1}
+                  {formatIndex(i, language)}
                 </span>
                 <p className="eyebrow">{p.audience}</p>
                 <h2>{p.title}</h2>
@@ -348,7 +367,7 @@ function Partners() {
                   <strong>{editorial.contentpages_program_connection}</strong>
                   {p.connection}
                 </p>
-                <Link className="text-link" to="/contact">
+                <Link className="text-link" to={path("/contact")}>
                   {editorial.contentpages_discuss_this_pathway}
                   <Arrow />
                 </Link>
@@ -383,7 +402,33 @@ function Partners() {
     </>
   );
 }
+function Media() {
+  const { language, path } = useI18n();
+  return (
+    <>
+      <PageIntro
+        eyebrow={language === "ar" ? "الإعلام والأخبار" : "Media & news"}
+        title={language === "ar" ? "تحديثات موثوقة عند حدوثها." : "Verified updates, when they happen."}
+      >
+        {language === "ar"
+          ? "مساحة مستقبلية للمقابلات والتغطية الإعلامية والفعاليات العامة والإعلانات والتقارير والمواد الصحفية."
+          : "A future home for interviews, news coverage, public events, announcements, reports, and press materials."}
+      </PageIntro>
+      <section className="container section-sm">
+        <InitiativeFeature />
+        <div className="media-empty" role="status">
+          <span>{language === "ar" ? "لا توجد تغطية منشورة حالياً" : "No published coverage yet"}</span>
+          <h2>{language === "ar" ? "لن ننشر إلا ما يمكن توثيقه." : "We will publish only what can be verified."}</h2>
+          <p>{language === "ar" ? "لم يُعقد تجمّع دمشق بعد، ولم تتأكد مشاركة أي جهة إعلامية. ستُضاف الأخبار والتغطية بعد وقوعها والتحقق منها." : "The Damascus gathering has not taken place, and no media attendance is confirmed. News and coverage will be added after they occur and can be verified."}</p>
+          <Link className="text-link" to={path("/contact")}>{language === "ar" ? "استفسارات إعلامية" : "Media inquiries"}<Arrow /></Link>
+        </div>
+      </section>
+    </>
+  );
+}
 function Contact() {
+  const { language, editorial, locale } = useI18n();
+  const { inquiryCategories } = getInstitutionData(language);
   return (
     <>
       <PageIntro
@@ -426,8 +471,7 @@ function Contact() {
             {inquiryCategories.map((c, i) => (
               <li key={c}>
                 <span>
-                  {editorial.contentpages_0}
-                  {i + 1}
+                  {formatIndex(i, language)}
                 </span>
                 {c}
               </li>
@@ -444,6 +488,7 @@ function Contact() {
   );
 }
 function Privacy() {
+  const { editorial, locale, path } = useI18n();
   return (
     <>
       <PageIntro
@@ -492,7 +537,7 @@ function Privacy() {
             editorial.contentpages_program_descriptions_community_figures_and_organizational_languag
           }
         </p>
-        <Link to="/contact" className="text-link">
+        <Link to={path("/contact")} className="text-link">
           {editorial.contentpages_contact_information}
           <Arrow />
         </Link>
@@ -502,13 +547,16 @@ function Privacy() {
 }
 export default function ContentPages() {
   const { pathname } = useLocation();
-  switch (pathname.replace(/\/+$/, "") || "/") {
+  const { editorial } = useI18n();
+  switch (stripLanguage(pathname).replace(/\/+$/, "") || "/") {
     case "/challenge":
       return <Challenge />;
     case "/our-work":
       return <Work />;
     case "/about":
       return <About />;
+    case "/media":
+      return <Media />;
     case "/partner-with-us":
       return <Partners />;
     case "/contact":

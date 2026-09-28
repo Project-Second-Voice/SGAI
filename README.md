@@ -1,6 +1,6 @@
 # Syrian Graduate Advancement Initiative
 
-An independent institutional website prototype for SGAI, led by the Syrian Supreme Authority for Students (SSAS).
+An independent bilingual institutional website prototype for the Syrian Graduate Advancement Initiative (SGAI). The team has discussed the intended identity Syrian Supreme Authority for Students (SSAS), or `الهيئة العليا للطلاب`; it is not currently an official governmental authority or Ministry agency.
 
 Repository: `Project-Second-Voice/SGAI`. This project has no dependency on, or deployment connection to, Camino, Broad Shoulders, or the Project Second Voice website.
 
@@ -35,11 +35,11 @@ This is a review prototype, not a public launch. No backend, inquiry collection,
 | File                            | Responsibility                                                                                                        |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `src/config.ts`                 | Review mode; approved domain, contacts, official logo, PSV URL, social and partner placeholders                       |
-| `src/locales/en.ts`             | Navigation and common interface language                                                                              |
-| `src/locales/editorial.en.json` | Page copy and editorial headings                                                                                      |
-| `src/locales/index.ts`          | Active language exports; currently approved English only                                                              |
-| `src/data/institution.ts`       | Statistics, five programs, intended impact, partnership categories, capabilities, accountability, recognition pathway |
-| `src/data/stories.json`         | All 13 supplied anonymous narratives, messages, excerpts, ages and regions                                            |
+| `src/locales/en.ts`, `ar.ts`    | English and Arabic navigation and common interface language                                                            |
+| `src/locales/editorial.*.json`  | English and Arabic page copy, editorial headings, and interface labels                                                |
+| `src/locales/index.ts`          | Route-aware locale resolution, localized paths, and direction helpers                                                  |
+| `src/data/institution.ts`       | Bilingual statistics, programs, strategy, initiatives, partnerships, and recognition pathway                          |
+| `src/data/stories*.json`        | All 13 supplied anonymous narratives in English and Arabic, with shared stable slugs                                  |
 | `src/components/Metadata.tsx`   | Route metadata and canonical URLs                                                                                     |
 | `src/styles.css`                | Design tokens, responsive layouts, focus states, logical-direction properties                                         |
 
@@ -47,9 +47,9 @@ Add stories by appending the same record schema with a unique, stable slug. Pres
 
 ## Languages and RTL
 
-English editorial copy is separated from presentation. Common UI copy, program data, stories, metadata, and any remaining accessibility labels must also be included in the approved translation workflow. Add the reviewed Arabic equivalents, wire the locale resolver, and enable Arabic only after approval. Do not expose an incomplete locale. Use an Arabic-capable font (the stack includes Noto Sans Arabic with a system fallback) and set both `lang` and `dir`.
+English lives at `/`; Arabic lives at `/ar`. The language selector preserves the current route and stores the selected preference. Page copy, common UI, programs, institutional data, stories, metadata, labels, empty states, and errors are localized through centralized resources rather than duplicated pages. Arabic sets `lang="ar"` and `dir="rtl"`, uses an Arabic-capable font stack, logical CSS properties, and direction-aware arrows and timelines.
 
-Development-only checks: append `?qa=rtl` to mirror layout or `?qa=large-text` for 200% root text size. These hooks are compiled out of the production build. The footer’s Arabic note means Arabic is in preparation; it is not a language switch.
+When adding or editing public content, update both locales and preserve story slugs across `stories.json` and `stories.ar.json`. Development-only large-text QA remains available with `?qa=large-text`.
 
 ## Hosting and indexing
 
@@ -63,4 +63,4 @@ Configure a genuine inquiry destination and privacy policy before introducing a 
 
 New media, reports, resources, and opportunities can be introduced as typed collections with page modules using the shared layout, metadata conventions, and design tokens. A CMS can supply the current content schema without replacing the UI. A graduate portal, application intake, scholarships directory, or private registry requires separate backend, authentication, access controls, and privacy design; none should expose the anonymous-story dataset as an identity directory.
 
-See `docs/V1_REPORT.md` for scope and validation, and `docs/IMAGE_PROVENANCE.md` for the illustrative image.
+See `docs/BILINGUAL_IMPLEMENTATION_REPORT.md` for current scope, `docs/V1_REPORT.md` for the historical prototype report, and `docs/IMAGE_PROVENANCE.md` for the illustrative image.

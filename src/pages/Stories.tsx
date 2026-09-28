@@ -1,4 +1,3 @@
-import { editorial } from "../locales";
 import { Link, useParams } from "react-router-dom";
 import {
   Arrow,
@@ -8,10 +7,12 @@ import {
   PartnerCTA,
   ButtonLink,
 } from "../components/Shared";
-import stories from "../data/stories.json";
-import { locale } from "../locales";
+import { useStories } from "../data/useStories";
+import { useI18n } from "../locales";
 export default function Stories() {
   const { slug } = useParams();
+  const { editorial, locale, path } = useI18n();
+  const stories = useStories();
   if (!slug)
     return (
       <>
@@ -66,7 +67,7 @@ export default function Stories() {
   return (
     <>
       <header className="story-intro container">
-        <Link to="/stories" className="text-link back-link">
+        <Link to={path("/stories")} className="text-link back-link">
           <Arrow />
           {locale.ui.backStories}
         </Link>
@@ -103,7 +104,7 @@ export default function Stories() {
       <section className="section container related-stories">
         <div className="section-top">
           <h2>{editorial.stories_more_voices_more_perspectives}</h2>
-          <Link className="text-link" to="/stories">
+          <Link className="text-link" to={path("/stories")}>
             {editorial.stories_all_stories}
             <Arrow />
           </Link>

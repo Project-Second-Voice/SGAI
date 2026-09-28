@@ -1,4 +1,6 @@
-# SGAI V1 delivery report
+# SGAI V1 delivery report (historical)
+
+This document records the original English-only prototype. It is retained for project history and has been superseded by the bilingual implementation described in `BILINGUAL_IMPLEMENTATION_REPORT.md` and the current `README.md`.
 
 ## Site overview and design
 
@@ -25,7 +27,7 @@ The [SYE reference](https://www.sye-initiative.org/) informed mission-first hier
 
 The supplied proposal is the factual source for the SGAI/SSAS relationship, recognition context, statistics, proposed programs, organizational capabilities, partnership categories, accountability mechanisms, and intended impact. No independent institutional corrections, endorsements, legal status, addresses, team biographies, partner logos, funding, or achieved outcomes were invented.
 
-The 20,000+ figure uses the proposal’s wider online-education community framing; 1,500+ describes verified graduates ready, and 2,000+ describes direct ongoing contact. Figures are explicitly distinguished from program results. The review checklist flags the proposal’s varying descriptions of the wider-community figure for SGAI confirmation.
+The original prototype figures have been superseded. The current bilingual implementation uses only 20,000+ Syrian students/graduates connected to online higher education, 1,500+ students and graduates in direct contact, and three highlighted educational fields. These figures are distinguished from program outcomes and do not imply percentages or distributions.
 
 Each program receives a purpose, explanation of its importance, key activities, and intended outcome:
 
@@ -70,7 +72,7 @@ Route titles, descriptions, Open Graph text, canonical configuration, favicon, r
 
 ## Localization and expansion
 
-Common UI text and editorial copy are centralized in English language resources. Institutional datasets and story records are separate from page presentation. CSS uses logical spacing and direction-aware arrows. Arabic-capable fallbacks and development-only RTL checks are available, but no official Arabic translation or public language switch is published.
+The original localization notes have been superseded. The current implementation centralizes English and Arabic UI/editorial resources, bilingual institutional datasets, and 13 English/Arabic story records. Arabic is published under `/ar` with true RTL and a route-preserving language switch.
 
 Future media, reports, resources, opportunities, scholarships, and partner collections can use the same page modules, data structure, shared components, and tokens. A CMS can replace local collection sources. A secure graduate portal or registry requires a separate authenticated backend and privacy design.
 
@@ -92,4 +94,4 @@ Source control destination: `https://github.com/Project-Second-Voice/SGAI.git`, 
 
 ## Remaining decisions
 
-SGAI needs to confirm factual language, statistics, SSAS relationship wording, all story publication approvals, logo and visual identity, contacts, domain, social accounts, Arabic translations, programs, partnership language, PSV acknowledgement/link, and any media/interview material. These are centralized in the review checklist. Noindex is not access control; a deployed review must use a private or authenticated hosting arrangement. The current preview stays on the local computer.
+Remaining launch decisions are centralized in the current review checklist. They include final institutional review of factual language and Arabic copy, approved public contacts and links, verified media material, and authorization to remove review labels and indexing restrictions. Noindex is not access control.

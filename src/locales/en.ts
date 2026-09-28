@@ -6,12 +6,14 @@ export const en = {
     { path: "/our-work", label: "Our Work" },
     { path: "/stories", label: "Graduate Stories" },
     { path: "/about", label: "About" },
+    { path: "/media", label: "Media" },
     { path: "/contact", label: "Contact" },
   ],
   ui: {
     skip: "Skip to content",
     menu: "Menu",
     closeMenu: "Close menu",
+    primaryNavigation: "Primary navigation",
     partner: "Partner with us",
     readStory: "Read the story",
     backStories: "All graduate stories",
@@ -21,5 +23,10 @@ export const en = {
     proposed: "Proposed program",
     contactUnavailable:
       "Public contact details will be available after SGAI review. Inquiries are not being collected through this prototype.",
+    language: "Language",
+    english: "English",
+    arabic: "العربية",
+    homeLabel: "SGAI home",
+    loading: "Loading SGAI…",
   },
 };

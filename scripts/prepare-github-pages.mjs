@@ -13,11 +13,16 @@ const routes = [
   "our-work",
   "stories",
   "about",
+  "media",
   "partner-with-us",
   "contact",
   "privacy",
   ...stories.map((story) => `stories/${story.slug}`),
 ];
+routes.push(
+  "ar",
+  ...routes.map((route) => `ar/${route}`),
+);
 for (const route of routes) {
   const directory = new URL(`${route}/`, output);
   await mkdir(directory, { recursive: true });
